@@ -1,0 +1,36 @@
+
+CREATE TABLE Reparti(
+
+    CodIdent        char(4)        PRIMARY KEY    REFERENCES   MediciInReparto(CodIdent)
+    Nome            varchar(50)    NOT NULL       UNIQUE
+    Direttore       char(16)       REFERENCES     Medici
+ )
+
+CREATE TABLE Pazienti(
+
+    NumIdent        int            PRIMARY KEY 
+    Nome            varchar(50)    NOT NULL
+    Sesso           char           NOT NULL
+    Reparto         char(4)        REFERENCES      Reparti
+    DataRicovero    datetime       NOT NULL
+ )
+
+CREATE TABLE Medici(
+
+   CodFiscale       char(16)       PRIMARY KEY     
+   Nome             varchar(50)    NOT NULL
+   Specializzazione varchar(50)    NOT NULL
+   Reparto          char(4)        REFERENCES      Reparti
+ )
+
+CREATE TABLE MediciInReparto (
+
+   CodIdent         char(4)        REFERENCES      Reparti(CodIdent)
+   CodFiscale       char(16)       PRIMARY KEY     REFERENCES    Medici(CodFiscale)
+ )
+
+CREATE TABLE PazientiInReparto(
+ 
+   CodIdent         char(4)        REFERENCES     Reparti(CodIdent)
+   NumIdent         int            PRIMARY KEY    REFERENCES      Pazienti(NumIdent)
+ )    
