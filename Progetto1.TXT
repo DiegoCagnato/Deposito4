@@ -1,0 +1,27 @@
+
+CREATE TABLE Utente(
+
+    CodUtente        char(4)         PRIMARY KEY
+    Username         char(30)        REFERENCES     Amicizie(Username)
+    Nome             char(30)        NOT NULL
+    Cognome          char(30)        NOT NULL
+    LuogoNascita     char(50)    
+    DataNascita      smalldatetime 
+    FotoProfilo      char(4)         REFERENCES      Foto
+    CodCaricaFoto    char(4)         REFERENCES      Foto(CodUtente)
+ )
+
+CREATE TABLE Amicizie(
+  
+    UsernameUtente   char(30)        NOT NULL
+    UsernameAmico    char(30)        REFERENCES     Utente(Username)
+ )
+
+CREATE TABLE Foto(
+
+    Id              char(4)          PRIMARY KEY
+    Nome            char(30)         NOT NULL
+    Luogo           char(30)         
+    DataEOra        datetime         
+    CodUtente       char(4)          NOT NULL
+ )
