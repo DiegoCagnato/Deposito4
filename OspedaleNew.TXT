@@ -1,0 +1,24 @@
+
+CREATE TABLE Reparto(
+
+    CodIdent        char(4)        PRIMARY KEY    
+    Nome            varchar(50)    NOT NULL       UNIQUE
+    Direttore       char(16)       NOT NULL       REFERENCES     Medico
+ )
+
+CREATE TABLE Paziente(
+
+    NumIdent        int            PRIMARY KEY 
+    Nome            varchar(50)    NOT NULL
+    Sesso           char           NOT NULL
+    Reparto         char(4)        NOT NULL       REFERENCES      Reparto
+    DataRicovero    smalldatetime  NOT NULL
+ )
+
+CREATE TABLE Medico(
+
+   CodFiscale       char(16)       PRIMARY KEY     
+   Nome             varchar(50)    NOT NULL
+   Specializzazione varchar(50)    NOT NULL
+   Reparto          char(4)        NOT NULL       REFERENCES      Reparto
+ )
